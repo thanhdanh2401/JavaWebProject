@@ -1,0 +1,5 @@
+Hiệu ứng load trang(có tweenmax), 
+modal box, 
+apple com(hiệu ứng slide), 
+hiệu ứng scroll(nếu cần)
+Thư viện wow.js
