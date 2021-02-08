@@ -22,7 +22,7 @@
         </style>
     </head>
     <body>
-        <form action="" method="post">
+        <form action="/login" method="post">
             <fieldset>
                 <legend>Log In</legend>
                 <div class="form-group">
