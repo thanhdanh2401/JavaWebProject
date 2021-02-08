@@ -5,6 +5,8 @@
  */
 package controllers;
 
+import daos.UserDAO;
+import static daos.UserDAO.getUser;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -35,16 +37,22 @@ public class LogInController extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet LogInController</title>");            
+            out.println("<title>Servlet LogInController</title>");
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet LogInController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+
+            String txtUser = request.getParameter("txtUser");
+            String txtPass = request.getParameter("txtPass");
+
+            if (request.getParameter("txtUS").compareTo(txtUser) == 0
+                    && request.getAttribute("txtPass").toString().compareTo(txtPass) == 0) {
+                response.sendRedirect("index.jsp");
+            }
+
         }
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
+// <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
      *
@@ -56,7 +64,11 @@ public class LogInController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+        String path = request.getRequestURI();
+        if (path.endsWith("/login")) {
+            request.getRequestDispatcher("/login.jsp").forward(request, response);
+        } 
     }
 
     /**
@@ -70,7 +82,8 @@ public class LogInController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        //processRequest(request, response);
+
     }
 
     /**
